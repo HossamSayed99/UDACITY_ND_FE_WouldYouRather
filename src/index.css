@@ -93,3 +93,39 @@ li {
   width: 40%;
   margin-bottom:10px ;
 }
+
+.question-card{
+  width: 50%;
+  border: 2px solid grey;
+  margin: 10px;
+}
+.question-card img{
+  height: auto;
+  width: 90%;
+}
+
+.question-card .question-details{
+  display: inline;
+  color: #4d5e8a;
+}
+
+.question-card .question-title{
+  display: inline;
+  color: #1e1a8f;
+  padding: 2px;
+}
+.question-card .question-options{
+  padding: 2px;
+  font-weight: bold;
+  margin: 2px;
+}
+.questions-type {
+  width: 60%;
+  margin: auto;
+  padding: 10px;
+}
+
+.author-name {
+  margin-top: 2px;
+  text-align: left;
+}

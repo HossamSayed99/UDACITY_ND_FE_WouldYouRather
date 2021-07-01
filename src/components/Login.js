@@ -17,7 +17,7 @@ class Login extends Component{
     }
     render(){
         return (
-            <div>5
+            <div>
                 <Router>
                     <Card className = "login-card">
                     <Card.Header as="h5" style = {{color: "white", background: "#1e1a8f"}}>Login</Card.Header>

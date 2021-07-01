@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Navbar from './Navbar'
 import Dashboard from './Dashboard'
-import QuestionPage from './QuestionPage'
+import Question from './Question'
 import NewQuestion from './NewQuestion'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from 'react-redux'
@@ -15,11 +15,11 @@ class App extends Component {
         <Router>
           <div className="App">
             <Navbar></Navbar>
-            <div className = "app-content">
+            <div className = "app-content" style = {{textAlign: "center"}}>
               {this.props.currentUser ? (
                   <Switch>
                     <Route path = '/' exact component = {Dashboard}></Route>
-                    <Route path = '/question/:id' exact component = {QuestionPage}></Route>
+                    <Route path = '/question/:id' exact component = {Question}></Route>
                     <Route path='/new' component={NewQuestion}></Route>
                   </Switch> 
               ) : (
