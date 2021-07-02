@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
 import { connect } from 'react-redux'
 import {getInitialQuestions, getInitialUsers} from '../actions/shared'
 import {setUser} from '../actions/users'
@@ -34,7 +34,7 @@ class Login extends Component{
                                             (
                                                 user!== 'currentUser' && 
                                                 <div className = "single-user" key = {this.props.users[user].id}>
-                                                    <img className = "user-image" src = {this.props.users[user].avatarURL} alt = "profile image"></img>
+                                                    <img className = "user-image" src = {this.props.users[user].avatarURL} alt = "profile"></img>
                                                     <Dropdown.Item className = "user-name" href="" eventKey = {user}>{user}</Dropdown.Item>
                                                 </div>
                                             )

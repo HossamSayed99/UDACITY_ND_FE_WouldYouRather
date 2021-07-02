@@ -8,7 +8,6 @@ class NewQuestion extends Component{
     state = {
         optionOne: '',
         optionTwo: '',  
-        finished: false
     }
     handleAddFirstOption = (e) =>{
         const text = e.target.value
@@ -26,25 +25,22 @@ class NewQuestion extends Component{
         e.preventDefault()
         console.log('State: ',this.state)
         console.log('Props: ', this.props)
-        // const {optionOne, optionTwo} = this.state
-        // this.props.dispatch(handleAddQuestion(optionOne, optionTwo))
-        // this.setState(() => ({
-        //     optionOne: '',
-        //     optionTwo: '',
-        //     finished: true
-        // }))
+        const {optionOne, optionTwo} = this.state
+        this.props.dispatch(handleAddQuestion(optionOne, optionTwo, this.props.users.currentUser))
+        this.setState(() => ({
+            optionOne: '',
+            optionTwo: '',
+        }))
+        this.props.history.push('/')
     }
     render(){
-        const {optionOne, optionTwo, finished}  = this.state
-        if(finished === true){
-            return <Redirect to = '/unanswered'></Redirect>
-        }
+        const {optionOne, optionTwo}  = this.state
 
         return (
             <div>
                 <h3 className='center'>Create New Question</h3>
                 <div className = 'image-container'>
-                    <img className = 'center question-image'src = {'https://icebreakerideas.com/wp-content/uploads/2019/04/Would-You-Rather-Questions-e1603506571355.jpg'}></img>
+                    <img className = 'center question-image'src = {'https://icebreakerideas.com/wp-content/uploads/2019/04/Would-You-Rather-Questions-e1603506571355.jpg'} alt="gameicon"></img>
                 </div>
                 <form className='new-question' onSubmit={this.handleSubmit}>
                 <textarea
@@ -64,8 +60,9 @@ class NewQuestion extends Component{
                 />
                 <button
                     className='btn'
+                    variant = "primary"
                     type='submit'
-                    disabled={optionOne === '' || optionTwo === ''}>
+                    disabled= {optionOne === '' || optionTwo === ''}>
                     Submit
                 </button>
                 </form>
@@ -75,7 +72,7 @@ class NewQuestion extends Component{
 }
 
 
-function mapStateToProps ( users ) {
+function mapStateToProps ( {users} ) {
     return {
         users
     }

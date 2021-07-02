@@ -21,7 +21,7 @@ class Question extends Component {
     }
     handleChange = (e) =>{
         console.log(e.target.id)
-        if(e.target.id == 1){
+        if(e.target.id === 1){
             this.setState({
                 selectedOption: "optionOne"
             })
@@ -53,7 +53,7 @@ class Question extends Component {
                     <Container className = "question-card">
                         <Row>
                             <Col md = "auto">
-                                <img className = "user-image single-user" src = {users[thisQuestion.author].avatarURL}></img>
+                                <img className = "user-image single-user" src = {users[thisQuestion.author].avatarURL} alt="avatar"></img>
                             </Col>
                             <Col>
                                 <div className = "question-details">
@@ -106,7 +106,7 @@ class Question extends Component {
                     <Container className = "question-card">
                         <Row>
                             <Col md = "auto">
-                                <img className = "user-image single-user" src = {users[thisQuestion.author].avatarURL}></img>
+                                <img className = "user-image single-user" src = {users[thisQuestion.author].avatarURL} alt="avatar"></img>
                             </Col>
                             <Col>
                                 <div className = "question-details">

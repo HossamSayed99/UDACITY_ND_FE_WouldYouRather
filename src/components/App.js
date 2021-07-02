@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import Dashboard from './Dashboard'
 import Question from './Question'
 import NewQuestion from './NewQuestion'
+import Leaderboard from './Leaderboard'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from 'react-redux'
 
@@ -21,6 +22,7 @@ class App extends Component {
                     <Route path = '/' exact component = {Dashboard}></Route>
                     <Route path = '/question/:id' exact component = {Question}></Route>
                     <Route path='/new' component={NewQuestion}></Route>
+                    <Route paht='/leaderboard' component= {Leaderboard}></Route>
                   </Switch> 
               ) : (
                 <Login/>

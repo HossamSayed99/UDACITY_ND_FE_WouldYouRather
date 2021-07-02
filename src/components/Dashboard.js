@@ -43,7 +43,7 @@ class Dashboard extends Component {
                                             <Container className = "question-card" key = {q}>
                                                 <Row>
                                                     <Col md = "auto">
-                                                        <img className = "user-image single-user" src = {users[questions[q].author].avatarURL}></img>
+                                                        <img className = "user-image single-user" src = {users[questions[q].author].avatarURL} alt="user"></img>
                                                     </Col>
                                                     <Col>
                                                         <div className = "question-details">
@@ -84,7 +84,7 @@ class Dashboard extends Component {
                                             <Container className = "question-card">
                                                 <Row>
                                                     <Col md = "auto">
-                                                        <img className = "user-image single-user" src = {users[questions[q].author].avatarURL}></img>
+                                                        <img className = "user-image single-user" src = {users[questions[q].author].avatarURL} alt="user"></img>
                                                     </Col>
                                                     <Col>
                                                         <div className = "question-details">
