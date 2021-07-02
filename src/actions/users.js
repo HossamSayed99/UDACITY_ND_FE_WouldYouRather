@@ -1,6 +1,7 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const SET_USER = 'SET_USER'
 export const REMOVE_USER = 'REMOVE_USER'
+export const ADD_ANSWER = 'ADD_ANSWER'
 
 export function receiveUsers (users) {
   return {
@@ -19,5 +20,14 @@ export function setUser(user){
 export function removeUser(){
   return{
     type : REMOVE_USER, 
+  }
+}
+
+export function addAnswer({ authedUser,qid, answer}){
+  return {
+    type: ADD_ANSWER,
+    authedUser, 
+    qid, 
+    answer
   }
 }

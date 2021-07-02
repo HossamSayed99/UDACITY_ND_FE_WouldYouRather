@@ -15,13 +15,14 @@ function addQuestion (question){
 
 export function handleAddQuestion(optionOne, optionTwo){
     return (dispatch, getState) => {
-        const { currentUser } = getState()
+        const { user } = getState()
         return _saveQuestion({
             optionOne, 
             optionTwo, 
-            currentUser
+            user
         })
             .then((question) => dispatch(addQuestion(question)))
+
     }
 }
 
@@ -32,10 +33,10 @@ export function receiveQuestions(questions){
     }
 }
 
-function answerQuestion({ authedUser,id, answer}){
+function answerQuestion({ authedUser,qid, answer}){
     return {
         type: ANSWER_QUESTION,
-        id, 
+        qid, 
         authedUser, 
         answer
     }

@@ -1,12 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Col, Container, Row, ListGroup, ButtonGroup, Button} from 'react-bootstrap';
-
-
-import { Link, useParams, withRouter } from 'react-router-dom'
-
+import { Col, Container, Row, ListGroup, Form, Button, ProgressBar} from 'react-bootstrap';
+import { handleAnswerQuestion } from '../actions/questions';
+import { addAnswer } from '../actions/users'
 class Question extends Component {
-    
+
+    state = {
+        selectedOption: null,
+    }
+    handleSubmit = (e) =>{
+        e.preventDefault()
+        console.log(this.state.selectedOption)
+        const details = {
+            authedUser: this.props.users.currentUser,
+            qid: this.props.match.params.id.slice(3),
+            answer: this.state.selectedOption
+        }
+        this.props.dispatch(handleAnswerQuestion(details))
+        this.props.dispatch(addAnswer(details))
+    }
+    handleChange = (e) =>{
+        console.log(e.target.id)
+        if(e.target.id == 1){
+            this.setState({
+                selectedOption: "optionOne"
+            })
+        }
+        else{
+            this.setState({
+                selectedOption: "optionTwo"
+            })
+        }
+    }
     
     render(){
         const id = this.props.match.params.id.slice(3)
@@ -16,6 +41,8 @@ class Question extends Component {
         const totalVotes = thisQuestion.optionOne.votes.length + thisQuestion.optionTwo.votes.length
         const optionOneVotes = thisQuestion.optionOne.votes.length 
         const optionTwoVotes = totalVotes - optionOneVotes
+        const optionOnePercentage = Math.round(optionOneVotes * 100 / totalVotes)
+        const optionTwoPercentage = 100 - optionOnePercentage
         console.log(thisQuestion)
         if(!thisQuestion){
             return <h1>404 Question not found</h1>
@@ -49,6 +76,8 @@ class Question extends Component {
                                                         out of ${totalVotes}
                                                     `
                                                 }
+                                                <ProgressBar now = {users[currentUser].answers[id] === 'optionOne' ? optionOnePercentage: optionTwoPercentage }
+                                                    label ={`${users[currentUser].answers[id] === 'optionOne' ? optionOnePercentage: optionTwoPercentage}%` }/>
                                         </ListGroup.Item>
                                         <ListGroup.Item style = {{color: "grey"}}>{
                                             `
@@ -74,7 +103,27 @@ class Question extends Component {
             }
             else{
                 return (
-                    <h1>What?</h1>
+                    <Container className = "question-card">
+                        <Row>
+                            <Col md = "auto">
+                                <img className = "user-image single-user" src = {users[thisQuestion.author].avatarURL}></img>
+                            </Col>
+                            <Col>
+                                <div className = "question-details">
+                                    <h4 className = "author-name">{thisQuestion.author}</h4>
+                                    <h4 className = "question-title">Would you rather?</h4>
+                                    <Form style = {{margin: "10px", textAlign: "left", fontSize:"20px"}} onSubmit = {(e) => this.handleSubmit(e)}>
+                                        <Form.Check type= "radio" id = "1" name = "answers" label = {thisQuestion.optionOne.text} onChange = {this.handleChange}></Form.Check>
+                                        <Form.Check type= "radio" id = "2" name = "answers" label = {thisQuestion.optionTwo.text} onChange = {this.handleChange}></Form.Check>
+                                        {this.state.selectedOption === null ? (<Button variant="primary" type="submit" disabled> Submit Answer</Button>) : 
+                                                                              (<Button variant="primary" type="submit"> Submit Answer</Button>)
+                                        }
+                                        
+                                    </Form>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
                 )
             }
         }

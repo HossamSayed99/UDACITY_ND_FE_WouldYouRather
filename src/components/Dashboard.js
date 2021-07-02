@@ -24,8 +24,8 @@ class Dashboard extends Component {
         const users = this.props.users
         const questions = this.props.questions
         const currentUser = users.currentUser
-        const answeredQuestions = Object.keys(users[currentUser].answers)
-        const unAnsweredQuestions = Object.keys(questions).filter((q) => ( !answeredQuestions.includes(q) ) )
+        const answeredQuestions = Object.keys(users[currentUser].answers).sort((a, b) =>  questions[b].timestamp - questions[a].timestamp)
+        const unAnsweredQuestions = this.props.questionsIds.filter((q) => ( !answeredQuestions.includes(q) ) )
         console.log(answeredQuestions);
         if(this.state.unanswered){
             return (
@@ -39,26 +39,28 @@ class Dashboard extends Component {
                             {
                                 unAnsweredQuestions.map( (q) => {
                                     return(
-                                        <Container className = "question-card" key = {q}>
-                                            <Row>
-                                                <Col md = "auto">
-                                                    <img className = "user-image single-user" src = {users[questions[q].author].avatarURL}></img>
-                                                </Col>
-                                                <Col>
-                                                    <div className = "question-details">
-                                                        <h4 className = "author-name">{questions[q].author}</h4>
-                                                        <h4 className = "question-title">Would you rather?</h4>
-                                                        <ListGroup className = "question-options">
-                                                            <ListGroup.Item style = {{color: "red"}}>{questions[q].optionOne.text}</ListGroup.Item>
-                                                            <ListGroup.Item style = {{color: "black"}}>{questions[q].optionTwo.text}</ListGroup.Item>
-                                                        </ListGroup>
-                                                        <LinkContainer style={{marginBottom: "5px"}} to = {`question/id:${q}`}>
-                                                            <Button  variant = "primary">Answer question</Button>
-                                                        </LinkContainer>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Container>
+                                        <LinkContainer key = {q} to = {`question/id:${q}`}>
+                                            <Container className = "question-card" key = {q}>
+                                                <Row>
+                                                    <Col md = "auto">
+                                                        <img className = "user-image single-user" src = {users[questions[q].author].avatarURL}></img>
+                                                    </Col>
+                                                    <Col>
+                                                        <div className = "question-details">
+                                                            <h4 className = "author-name">{questions[q].author}</h4>
+                                                            <h4 className = "question-title">Would you rather?</h4>
+                                                            <ListGroup className = "question-options">
+                                                                <ListGroup.Item style = {{color: "red"}}>{questions[q].optionOne.text}</ListGroup.Item>
+                                                                <ListGroup.Item style = {{color: "black"}}>{questions[q].optionTwo.text}</ListGroup.Item>
+                                                            </ListGroup>
+                                                            <LinkContainer style={{marginBottom: "5px"}} to = {`question/id:${q}`}>
+                                                                <Button  variant = "primary">Answer question</Button>
+                                                            </LinkContainer>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                            </Container>
+                                        </LinkContainer>
                                     )
                                 })
                             }

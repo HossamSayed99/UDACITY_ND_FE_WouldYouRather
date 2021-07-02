@@ -38,7 +38,7 @@ let questions = {
   "8xf0y6ziyjabvozdd253nd": {
     id: '8xf0y6ziyjabvozdd253nd',
     author: 'sarahedo',
-    timestamp: 1467166872634,
+    timestamp: 1467166872634, //Wednesday, June 29, 2016 2:21:12.634 AM
     optionOne: {
       votes: ['sarahedo'],
       text: 'have horrible short term memory',
@@ -51,10 +51,10 @@ let questions = {
   "6ni6ok3ym7mf1p33lnez": {
     id: '6ni6ok3ym7mf1p33lnez',
     author: 'johndoe',
-    timestamp: 1468479767190,
+    timestamp: 1468479767190, //Thursday, July 14, 2016 7:02:47.190 AM
     optionOne: {
       votes: [],
-      text: ' me a superhero',
+      text: 'becomme a superhero',
     },
     optionTwo: {
       votes: ['johndoe', 'sarahedo'],
@@ -64,7 +64,7 @@ let questions = {
   "am8ehyc8byjqgar0jgpub9": {
     id: 'am8ehyc8byjqgar0jgpub9',
     author: 'sarahedo',
-    timestamp: 1488579767190,
+    timestamp: 1488579767190, //Friday, March 3, 2017 10:22:47.190 PM
     optionOne: {
       votes: [],
       text: 'be telekinetic',
@@ -77,7 +77,7 @@ let questions = {
   "loxhs1bqm25b708cmbf3g": {
     id: 'loxhs1bqm25b708cmbf3g',
     author: 'tylermcginnis',
-    timestamp: 1482579767190,
+    timestamp: 1482579767190, // Saturday, December 24, 2016 11:42:47.190 AM
     optionOne: {
       votes: [],
       text: 'be a front-end developer',
